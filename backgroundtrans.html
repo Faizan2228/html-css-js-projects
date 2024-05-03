@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f3fbff;
+    }
+    .img-box{
+        width: 60%;
+        height: 33%;
+        margin: auto;
+        line-height: 0;
+        background-image: url("background.png");
+        overflow: hidden;
+        position: relative;
+    }
+    /* .img-box img{
+        width: 100%;
+        height: 330px;
+    } */
+    .img-wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+    span{
+        width: 1px;
+        height: 100%;
+        cursor: pointer;
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #arrow{
+        width: 40px;
+        position: absolute;
+        top: 50%;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    #original{
+        width: 200%;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="img-box" id="img-box">
+        <img src="transparent.png" width="100%">
+        <div class="img-wrap" id="img-wrap">
+            <img src="original.jpg" id="original">
+        </div>
+        <span id="line">
+            <img src="arrow.png" id="arrow">
+        </span>
+    </div>
+</div>
+<script>
+    var transImg = document.getElementById("img-box");
+    var orgImg = document.getElementById("img-wrap");
+    var original = document.getElementById("original");
+    var line = document.getElementById("line");
+
+    var prevMouseX = 0;
+
+    original.style.width = transImg.offsetWidth + "px";
+    var leftSpace = transImg.offsetLeft;
+
+    transImg.onmousemove = function(e){
+        var boxWidth = (e.pageX - leftSpace) + "px";
+        orgImg.style.width = boxWidth;
+        line.style.left = boxWidth;
+    }
+    
+</script>
+</body>
+</html>
