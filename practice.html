@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="one">
+        <div class="two" id="two">
+            <button class="btn">click</button>
+        </div>
+    </div>
+
+    <script>
+        const one = document.querySelectorAll('div')
+        function logText(e){
+            console.log(this.classList.value)
+        }
+        one.forEach(div => div.addEventListener('click', logText))
+        const obj = {
+            name: 'amaan',
+            age: 23,
+            range: 7,
+        }
+        // const {name, age, range} = obj
+        console.log()
+
+       class Car{
+        constructor(brand, year){
+            this.brand = brand
+            this.year = year
+        }
+        present(){
+            return `this is brand is ${this.brand} and year is ${this.year}`
+        }
+       }
+       const myCar = new Car('volvo', 2014)
+
+       class Color extends Car{
+        constructor(brand, year,col){
+            super(brand, year)
+            this.col = col
+        }
+        show(){
+            return `${this.present()}. color is ${this.col}`
+        }
+       }
+       const myCars = new Color('volvo', 2014, 'green')
+       console.log(myCars.show())
+
+       const text = "Apple, Banana, Kiwi"
+       let textslice = text.indexOf('Kiwi')
+    //    console.log(textslice)
+
+       const num = [45, 4, 9, 16, 25];
+       const num2 =  [45, 4, 9, 16, 25];
+       const y = [...num, ...num2]
+       console.log(y)
+
+
+       function person(name){
+        this.name = name
+       }
+
+       person.prototype.nation = 'india'
+       const per = new person('amaan')
+       console.log(per)
+
+       function name(){
+       let sum = 'hello world'
+       return sum;
+       }
+       function callback(a){
+        return a();
+       }
+    //    setTimeout(()=>{console.log(callback(name))},3000)
+
+       const myPromise = new Promise((resolve, reject)=>{
+        let x = 9;
+
+        if(x == 0){
+            resolve('pass')
+        }
+        else{
+            reject('fail')
+        }
+       })
+
+       myPromise.then(
+        (value)=>{ console.log(value)
+       })
+       .catch((err) =>{ console.log(err)})
+
+       const fetchData = async ()=> {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users')
+       
+       const data = await res.json()
+       return data
+
+       }
+       fetchData().then((value)=> {
+        value.map((v)=> console.log(v.address.suite))
+       })
+       .catch((err)=>{
+        console.log(err)
+       })
+
+       const met = {
+        name: 'amaan',
+        fun: function(){
+            return this.name
+        }
+       }
+       console.log(met.fun())
+       let two = document.getElementById('two')
+       const div = document.createElement('div')
+
+       
+       let p = 'hello world'
+       let para = document.createElement('p')
+       para.innerHTML = p;
+
+       two.appendChild(div);
+       div.appendChild(para)
+       two.style.height = '200px'
+       two.style.backgroundColor = 'red'
+       two.style.width = '300px'
+
+</script>
+</body>
+</html>

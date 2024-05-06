@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    .container{
+        width: 100%;
+        max-width: 600px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+    }
+    .container h2{
+        margin: 10px 0;
+        font-size: 30px;
+    }
+    .container p{
+        padding: 10px;
+        font-size: 18px;
+    }
+    #btn{
+        align-self: flex-start;
+        margin-left: 10px;
+        padding: 8px 8px;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        background-color: orange;
+        color: #fff;
+    }
+    #video{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        transition: all 8s;
+    }
+    #video iframe{
+        position: relative;
+        max-width: 900px;
+    }
+    #video img{
+        position: absolute;
+        top: 80px;
+        right: 80px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://wallpapercave.com/wp/I5Z5F6d.jpg" alt="" width="600px">
+        <h2>Movie Title</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse ex saepe repellendus itaque, ipsam possimus eaque incidunt perferendis tempora quaerat? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, recusandae!</p>
+        <button id="btn">Watch Now!</button>
+    </div>
+    <div id="video">
+        <iframe width="800px" height="600px" src="https://www.youtube.com/embed/E26C_hTnDPA?si=-EISR1q7CT_ATyrA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <img src="https://cdn.icon-icons.com/icons2/1238/PNG/512/letterx_83737.png" alt="" width="20px" id="close">
+    </div>
+
+<script>
+    const video = document.getElementById("video");
+    const img = document.getElementById("close");
+    const btn = document.getElementById("btn");
+    btn.addEventListener('click', ()=>{
+        video.style.display = 'flex';
+    });
+    img.addEventListener('click', ()=>{
+        video.style.display = 'none';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .hero{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg, #010758,#490d61);
+        width: 100%;
+        min-height: 100vh;
+        color: #fff;
+    }
+    .hero h1{
+        font-size: 45px;
+        font-weight: 600;
+        margin-top: -50px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    .hero span{
+        color: #ff2963;
+    }
+    .hero textarea{
+        width: 600px;
+        height: 270px;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 19px;
+        font-weight: 400;
+        background: #403d84;
+        outline: none;
+        border: none;
+        resize: none;
+        margin-bottom: 30px;
+    }
+    ::placeholder{
+        color: #ff2963;
+    }
+    .row{
+        width: 600px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .row select{
+        width: 450px;
+        height: 50px;
+        font-size: 17px;
+        font-weight: 500;
+        padding:0 20px;
+        border: none;
+        outline: none;
+        border-radius: 35px;
+        background: #403d84;
+        appearance: none;
+        background-image: url("https://cdn4.iconfinder.com/data/icons/ios-optimized-1/30/arrow__down__arrow-down__dropdown__download__chevron-down__set-512.png");
+        background-repeat: no-repeat;
+        background-size: 25px;
+        background-position-x: calc(100% - 20px);
+        background-position-y: 15px;
+        cursor: pointer;
+    }
+    .row button{
+        background: #ff2963;
+        color: #fff;
+        font-size: 18px;
+        padding: 10px 16px;
+        border-radius: 35px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+    .row img{
+        width: 40px;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="hero">
+    <h1>Text To Speech <span>Converter</span></h1>
+    <textarea placeholder="Write anything here...."></textarea>
+    <div class="row">
+        <select>jjj</select>
+        <button class="btn"><img src="https://th.bing.com/th/id/R.a9a75ac5cc01e7f43fd516e6b995001d?rik=Ro0ZS%2bGyx77boQ&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2fncB%2fRRe%2fncBRReG5i.png&ehk=wtp3l4qKbXmTuwkwycZqq5qiJ0dK7EaTr%2f5z2vbucnA%3d&risl=&pid=ImgRaw&r=0">Listen</button>
+    </div>
+</div>
+<script>
+    let speech = new SpeechSynthesisUtterance();
+
+        let voices = [];
+
+        let voiceSelect = document.querySelector("select");
+
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            speech.voice = voices[0];
+
+            voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
+        }
+
+voiceSelect.addEventListener("change", () => {
+    speech.voice = voices[voiceSelect.value];
+});
+
+    document.querySelector(".btn").addEventListener("click", ()=>{
+        speech.text = document.querySelector("textarea").value;
+        window.speechSynthesis.speak(speech);
+    });
+</script>
+</body>
+</html>

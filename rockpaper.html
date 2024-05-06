@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #container{
+        background-color:#535c68;
+        width: 550px;
+        height: 400px;
+        text-align: center;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 20px;
+    }
+    #rock, #paper, #scissor{
+        display: inline-block;
+        text-align: center;
+        margin: 60px 15px 15px 15px;
+        background-color: #6ab04c;
+        height: 120px;
+        width: 110px;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #rock:hover, #paper:hover, #scissor:hover{
+        opacity: 0.8;
+        box-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+
+    .winner-looser{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #winner-box, #looser-box{
+        display: inline-block;
+        text-align: center;
+        margin: 15px;
+        background-color: #6ab04c;
+        height: 120px;
+        width: 110px;
+        padding: 6px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    #winner, #looser{
+        width: 83px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="rock"><img src="https://parkercon.github.io/rock-paper-scissors/images/rock.png" width="90px"> Rock</div>
+    <div id="paper"><img src="https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png" width="83px">Paper</div>
+    <div id="scissor"><img src="https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png" width="83px"> 
+        Scissor</div>
+    <div class="winner-looser">
+    <div id="winner-box"><img src="" id="winner">
+        <p id="winner-text"></p>
+    </div>
+    <div id="looser-box"><img src="" id="looser">
+        <p id="looser-text"></p>
+    </div>
+    </div>
+</div>
+
+<script>
+
+const container = document.getElementById('container')
+const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissor = document.getElementById('scissor')
+const winner = document.getElementById('winner')
+const looser = document.getElementById('looser')
+const winnerBox = document.getElementById('winner-text')
+const looserBox = document.getElementById('looser-text')
+
+
+var getValue;
+
+function guessValue()  {
+    const gameValue = ['Rock', 'Paper', 'Scissor'];
+    let randomnum = Math.floor(Math.random() * gameValue.length)
+    getValue = gameValue[randomnum];
+    console.log(getValue, 'random')
+}
+rock.addEventListener('click', () => {
+    if(getValue === 'Paper'){ 
+            winner.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+            winnerBox.innerHTML = 'Winner';
+            looser.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+            looserBox.innerHTML = 'Loser';
+    }
+    else if(getValue === 'Scissor'){
+            winner.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+            winnerBox.innerHTML = 'Winner';
+            looser.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+            looserBox.innerHTML = 'Loser';
+    }
+    else{ 
+        winner.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+        winnerBox.innerHTML = 'Draw'
+        looser.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+        looserBox.innerHTML = 'Draw'
+    }
+    guessValue()
+    });
+paper.addEventListener('click', () => {
+    
+    if(getValue === 'Rock'){
+        winner.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+        winnerBox.innerHTML = 'Winner';
+        looser.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+        looserBox.innerHTML = 'Loser';
+    }
+    else if(getValue === 'Scissor'){
+        winner.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+        winnerBox.innerHTML = 'Winner';
+        looser.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+        looserBox.innerHTML = 'Loser';
+    }
+    else{
+        winner.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+        winnerBox.innerHTML = 'Draw'
+        looser.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+        looserBox.innerHTML = 'Draw'
+    }
+    guessValue()
+})
+
+scissor.addEventListener('click', () => {
+    if(getValue == 'Rock'){
+        winner.src = 'https://parkercon.github.io/rock-paper-scissors/images/rock.png';
+        winnerBox.innerHTML = 'Winner';
+        looser.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+        looserBox.innerHTML = 'Loser';
+    }
+    else if(getValue === "Paper"){
+        winner.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+        winnerBox.innerHTML = 'Winner';
+        looser.src = 'https://cdn0.iconfinder.com/data/icons/broken-2/24/Crumpled_Paper-1024.png';
+        looserBox.innerHTML = 'Loser';
+    }
+    else{ 
+        winner.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+        winnerBox.innerHTML = 'Draw'
+        looser.src = 'https://www.pinclipart.com/picdir/big/536-5360433_transparent-scissors-and-comb-png-transparent-cartoon-scissors.png';
+        looserBox.innerHTML = 'Draw'
+    }
+    guessValue()
+})
+
+
+
+
+
+</script>
+</body>
+</html>

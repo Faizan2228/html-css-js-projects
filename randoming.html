@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        background-color: brown;
+    }
+    .container{
+        margin: 40px 0 30px 0;
+    }
+    .container img{
+        border-radius: 5px;
+        margin: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        background-color: lightgray;
+        width: 350px;
+        height: 350px;
+        transition: transform 0.2s;
+    }
+    .container img:hover{
+        transform: scale(1.07);
+    }
+    #btn{
+        margin: 10px;
+        padding: 12px 14px;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: red;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    #btn:hover{
+        opacity: 0.8;
+    }
+</style>
+</head>
+<body>
+<div class="container" id="img-box">
+    <img src="https://picsum.photos/350?random=1">
+    <img src="https://picsum.photos/350?random=2">
+    <img src="https://picsum.photos/350?random=3">
+    <img src="https://picsum.photos/350?random=4">
+    <img src="https://picsum.photos/350?random=5">
+    <img src="https://picsum.photos/350?random=6">
+    <img src="https://picsum.photos/350?random=7">
+    <img src="https://picsum.photos/350?random=8">
+</div>
+<button id="btn">Load More</button>
+<script>
+
+const imgBox = document.getElementById("img-box");
+const loadBtn = document.getElementById("btn");
+let num = 8;
+
+loadBtn.addEventListener('click', () => {
+    loadImg();
+});
+function loadImg(){
+    for(let i = 0; i < num; i++){
+        const img = document.createElement('img');
+        img.src = `https://picsum.photos/350?random=${Math.floor(Math.random() * 2000)}?grayscale`;
+        imgBox.appendChild(img);
+    }
+    
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            margin-left: 40px;
+            margin-top: 60px;
+        }
+        .note{
+            background-color: aqua;
+            height: 250px;
+            width: 550px;
+            border-radius: 7px;
+            padding: 14px;
+            font-size: 18px;
+            text-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Notes</h1>
+            <button id="btn">Create Notes</button>
+        </div>
+        <div id="notes-box">
+            <p class="note" contenteditable="true">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, debitis.</p>
+        </div>
+    </div>
+
+    <script>        
+
+        const btn = document.getElementById('btn')
+        const nBox = document.getElementById('notes-box')
+
+        btn.addEventListener('click', ()=>{
+            let pTag = document.createElement('p')
+            pTag.contentEditable = 'true'
+            pTag.className = 'note'
+            nBox.appendChild(pTag)
+            
+            pTag.addEventListener('keyup', ()=>{
+                updateStorage()
+            })
+        })
+
+        const getData = () => {
+            nBox.innerHTML = localStorage.getItem('notes')
+        }
+        getData()
+
+        const updateStorage = () => {
+            localStorage.setItem('notes', nBox.innerHTML)
+        }
+
+
+    </script>
+</body>
+
+</html>

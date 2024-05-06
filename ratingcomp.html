@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #box{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #box1{
+        width: 100%;
+        height: 100vh;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 100%;
+        max-width: 350px;
+        height: 330px;
+        background-color: rgb(31, 5, 5);
+        color: #fff;
+        padding: 30px;
+        border-radius: 25px;
+    }
+    .rating-content img{
+        width: 40px;
+        background-color: rgb(74, 72, 72);
+        padding: 8px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+    .rating-content h2{
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .rating-content p{
+        color: #e6d9d9;
+        margin-bottom: 15px;
+    }
+    #select-rating{
+        width: 100%;
+        height: 40px;
+        display: inline-block;
+        margin: 10px 10px 10px -7px;
+    }
+    #select-rating span{
+        margin: 8px;
+        text-align: center;
+        background-color: rgb(74, 72, 72);
+        padding: 11px 17px;
+        border-radius: 50%;
+        font-size: 19px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        
+    }
+    #submit-btn{
+        width: 100%;
+        padding: 10px 0;
+        font-size: 14px;
+        color: #fff;
+        background-color: orange;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        letter-spacing: 2px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+    .thanks-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .thanks-card img{
+        width: 150px;
+        margin-top: -10px;
+    }
+    .thanks-card .ptag{
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: red;
+        padding: 10px;
+        background-color: rgb(74, 72, 72);
+        border-radius: 20px;
+    }
+    .thanks-card p{
+        margin-top: 8px;
+        color: #e6d9d9;
+    }
+</style>
+</head>
+<body>
+    <div id="box">
+<div class="container">
+    <div class="rating-content">
+        <img src="https://www.clipartqueen.com/image-files/simple-star-orange.png" alt="" width="30px">
+        <h2>How did we do?</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, cum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, vero?</p>
+        <div id="select-rating">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+        <button id="submit-btn">SUBMIT</button>
+    </div>
+</div>
+</div>
+<div id="box1">
+    <div class="container">
+        <div class="thanks-card">
+        <img src="https://cdn2.iconfinder.com/data/icons/payment-53/100/phone-card-reader-payment-processing-credit-debit-card-reader-mobile-phone-512.png" width="100px">
+        <p class="ptag">You selected <span id="rate"></span> out of 5</p>
+        <h2>Thank you</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, tempore.</p>
+        </div>
+    </div>
+</div>
+<script>
+
+let spans = document.querySelectorAll("#select-rating span")
+let submitBtn = document.getElementById("submit-btn");
+let rating = document.getElementById("ptag");
+let rate = document.getElementById("rate");
+let box = document.getElementById("box");
+let box1 = document.getElementById("box1");
+
+let ratingSelected = false;
+
+spans.forEach(span => {
+    span.addEventListener("click",() => {
+        spans.forEach(span => {
+            span.style.backgroundColor = "";
+        });
+        span.style.backgroundColor = "orange";
+        const rated = span.innerHTML;
+        rate.innerHTML = rated;
+        ratingSelected = true;
+    if(ratingSelected){
+        submitBtn.style.backgroundColor = "#fff";
+        submitBtn.style.color = "orange";
+    }
+    });
+});
+
+submitBtn.addEventListener("click", () =>{
+    box.style.display = "none";
+    box1.style.display = "flex";
+});
+
+</script>
+</body>
+</html>

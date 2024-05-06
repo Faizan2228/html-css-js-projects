@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            font-style: italic;
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100wh;
+            min-height: 100vh;
+            background: linear-gradient(135deg,#4203a9,#90bafc);
+            color: #fff;
+            padding: 10px;
+        }
+        .calc{
+            margin-top: 10%;
+            margin-left: 10%;
+            width: 100%;
+            max-width: 600px;
+        }.calc h1{
+            font-size: 60px;
+        }
+        .calc span{
+            color: yellow;
+        }
+        .input-box{
+            width: 100%;
+            max-width: 500px;
+            margin-left: 10%;
+            display: flex;
+            align-items: center;
+            padding: 35px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            position: relative;
+        }
+        .input-box input{
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 19px 20px;
+            border-radius: 7px;
+            font-size: 20px;
+            font-weight: 500px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .input-box button{
+            border: none;
+            outline: none;
+            padding: 20px 20px;
+            border-radius: 7px;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: yellow;
+            font-weight: 500px;
+        }
+        .input-box input::-webkit-calendar-picker-indicator{
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: auto;
+            background-position: calc(100% - 10px);
+            background-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="calc">
+        <h1>Javascript <br> <span>Age Calculator</span></h1>
+    </div>
+    <div class="input-box">
+        <input type="date" id="date">
+        <button>Calculate</button>
+    </div>
+</div>
+</body>
+</html>

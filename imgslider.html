@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: wheat;
+        height: 100vh;
+    }
+    .slide-container {
+        text-align: center;
+        width: 700px;
+        height: 500px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        border-radius: 8px;
+        position: relative;
+    }
+    #img-container{
+        display: flex;
+        transition: transform 0.7s ease-in-out;
+    }
+    #img-container img{
+        border-radius: 8px;
+    }
+    .btn{
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        cursor: pointer;
+    }
+    #left{
+        left: 1%;
+    }
+    #rght{
+        right: 1%;
+    }
+</style>
+</head>
+<body>
+<div class="slide-container">
+    <div id="img-container">
+        <img src="https://picsum.photos/id/22/700/500" alt="">
+        <img src="https://picsum.photos/id/26/700/500" alt="">
+        <img src="https://picsum.photos/id/38/700/500" alt="">
+        <img src="https://picsum.photos/id/58/700/500" alt="">
+        <img src="https://picsum.photos/id/63/700/500" alt="">
+        <img src="https://picsum.photos/id/78/700/500" alt="">
+    </div>
+    <img src="https://cdn2.iconfinder.com/data/icons/symbols-signs-outline/19/40-512.png" alt="" width="25px" id="left" class="btn">
+    <img src="https://cdn2.iconfinder.com/data/icons/250-perfect-vector-pictograms/48/9.5-512.png" alt="" width="23px" id="rght" class="btn">
+</div>
+<script>
+    const left = document.getElementById("left");
+    const right = document.getElementById("rght");
+    const imgCon = document.getElementById("img-container");
+    const imgs = imgCon.querySelectorAll('img');
+    console.log(imgs);
+
+    let currentImg = 1;
+    const imgWidth = 700;
+
+    right.addEventListener('click', () => {
+        currentImg++;
+        if(currentImg > imgs.length){
+        currentImg = 1;
+        }
+        imgCon.style.transform = `translateX(-${(currentImg - 1) * imgWidth}px)`;
+    });
+    
+
+    left.addEventListener('click', () => {
+        currentImg--;
+        if(currentImg < 1){
+            currentImg = imgs.length;
+        }else if(currentImg > imgs.length ){
+            currentImg = 1;
+        }
+        imgCon.style.transform = `translateX(-${(currentImg - 1) * imgWidth}px)`
+    });
+</script>
+</body>
+</html>

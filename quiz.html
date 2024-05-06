@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+    }
+    body{
+        background: #001e4d;
+    }
+    .container{
+        width: 90%;
+        max-width: 600px;
+        margin: 100px auto 0;
+        border-radius: 10px;
+        background: #fff;
+        padding: 30px;
+    }
+    .quiz{
+        padding: 15px 15px 15px 0;
+    }
+    .container h1{
+        border-bottom: black 2px solid;
+        padding-bottom: 11px;
+        font-size: 24px;
+        font-weight: 600px;
+    }
+    #answer-button{
+        width: 100%;
+        margin: 15px 15px 15px 0;
+    }
+    .btn{
+        display: block;
+        width: 100%;
+        outline: none;
+        border: 1px black solid;
+        border-radius: 6px;
+        padding: 11px 14px;
+        font-size: 17px;
+        margin: 4px 4px 4px 0;
+        text-align: left;
+        background-color: #fff;
+        font-weight: 600px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .btn:hover:not([disabled]){
+        box-shadow: 0 10px 20px 0px rgba(0,0,0,0.15);;
+        background-color: black;
+        color: #fff;
+    }
+    .btn:disabled{
+        cursor: no-drop;
+    }
+    #nxt-btn{
+        margin-right: auto;
+        margin-left: auto;
+        display: none;
+        padding: 10px 45px;
+        font-size: 15px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: black;
+        color: #fff;
+        cursor: pointer;
+    }
+    .correct{
+        background-color: #9aeabc;
+    }
+    .incorrect{
+        background-color: red;
+    }
+
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Simple quiz</h1>
+    <div class="quiz">
+        <h2 id="qstn">question here here</h2>
+        <div id="answer-button">
+        </div>
+        <button id="nxt-btn">Next</button>
+    </div>
+</div>
+<script>
+    const questions = [
+        {
+            question: "Which is largest animal in the world?",
+            answers: [
+                {text: "Shark", correct: false},
+                {text: "Blue whale", correct: true},
+                {text: "Elephant", correct: false},
+                {text: "Giraffe", correct: false}
+            ]
+        },
+        {
+            question: "Which is the smallest country in the world?",
+            answers: [
+                {text: "Vatican city", correct: true},
+                {text: "Bhutan", correct: false},
+                {text: "Nepal", correct: false},
+                {text: "Shri Lanka", correct: false}
+            ]
+        },
+        {
+            question: "Which is the smallest continent in the world?",
+            answers: [
+                {text: "Asia", correct: false},
+                {text: "Arctica", correct: true},
+                {text: "Australia", correct: false},
+                {text: "Africa", correct: false}
+            ]
+        },{
+            question: "Which is the largest desert in the world?",
+            answers: [
+                {text: "Kalahari", correct: false},
+                {text: "Gobi", correct: false},
+                {text: "Sahara", correct: false},
+                {text: "Antarctica", correct: true}
+            ]
+        },
+        
+    ];
+    console.log(questions[0].answers.text);
+
+    const qstn = document.getElementById("qstn");
+    const answerBtn = document.getElementById("answer-button");
+    const nxtBtn = document.getElementById("nxt-btn");
+let currentQstnIndex = 0;
+let score = 0;
+function startQuiz(){
+    currentQstnIndex = 0;
+    score = 0;
+    showQstn();
+}
+function showQstn(){
+    let currentQstn = questions[currentQstnIndex];
+    let qstnnum = currentQstnIndex + 1;
+    qstn.innerHTML = qstnnum + "." + currentQstn.question;
+    answerBtn.innerHTML = "";
+    currentQstn.answers.forEach(ans => {
+        const button = document.createElement("button");
+        button.classList.add("btn");
+        button.innerHTML = ans.text;
+        console.log(button);
+        answerBtn.appendChild(button);
+        if(ans.correct){
+            button.dataset.correct = ans.correct;
+        }
+        button.addEventListener("click",selectAns);
+    });
+}
+function resetState(){
+    nxtBtn.style.display = "none";
+    while(answerBtn.firstChild){
+        answerBtn.removeChild(answerBtn.firstChild);
+    }
+}
+function selectAns(e){
+    const selectedbtn = e.target;
+    const isCorrect = selectedbtn.dataset.correct === "true";
+    if(isCorrect){
+        selectedbtn.classList.add("correct");
+        score++;
+    }else{
+        selectedbtn.classList.add("incorrect");
+    }
+    Array.from(answerBtn.children).forEach(btn => {
+        if(btn.dataset.correct === "true"){
+            btn.classList.add("correct");
+        }
+        btn.disabled = true;
+    });
+    nxtBtn.style.display = "block";
+}
+startQuiz();
+function handleNextBtn(){
+    currentQstnIndex++;
+    if(currentQstnIndex < questions.length){
+        showQstn();
+    }else{
+        showScore();
+    }
+}
+nxtBtn.addEventListener("click",() => {
+    if(currentQstnIndex < questions.length){
+        handleNextBtn();
+    }else{
+        startQuiz();
+    }
+});
+function showScore(){
+    resetState()
+    qstn.innerHTML = `You scored ${score} out of ${questions.length}`;
+    nxtBtn.innerHTML = "Play Again";
+    nxtBtn.style.display = "block";
+}
+
+</script>
+</body>
+</html>
